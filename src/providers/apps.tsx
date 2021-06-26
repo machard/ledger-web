@@ -12,6 +12,13 @@ interface App {
 
 const defaultApps: App[] = [
   {
+    name: "Catalog",
+    icon: "list",
+    url: "https://ledger-web-catalog.vercel.app/",
+    isDev: false,
+    isDefault: true,
+  },
+  {
     name: "[DEV] Catalog",
     icon: "list",
     url: "http://localhost:3001/",
