@@ -19,7 +19,7 @@ function RequireApp(props: Props) {
     const devices = useContext(devicesContext);
 
     useEffect(() => {
-      if (devices.app.name === app.name) {
+      if (devices.app?.name === app.name) {
         handleSuccess()
       }
     })
@@ -31,10 +31,10 @@ function RequireApp(props: Props) {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Please open the {app.name} app on your device.
+            Please open the {app.name} app on your device and make sure the device is not connected to an other tab.
           </Typography>
           <Typography gutterBottom>
-            If you don't have it, please install it.
+            If you don't have the app, please install it.
           </Typography>
         </DialogContent>
         <DialogActions>
