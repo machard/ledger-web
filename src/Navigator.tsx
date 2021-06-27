@@ -8,9 +8,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
+import LinkIcon from '@material-ui/icons/Link';
 import Icon from '@material-ui/core/Icon';
 import { Omit } from '@material-ui/types';
 import { context, setApp } from "./providers/apps";
+import { context as devicesContext } from "./providers/devices";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -55,6 +57,9 @@ const styles = (theme: Theme) =>
     disconnected: {
       color: "red"
     },
+    connected: {
+      color: "green"
+    },
   });
 
 export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles<typeof styles> {}
@@ -62,6 +67,7 @@ export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles
 function Navigator(props: NavigatorProps) {
   const { classes, ...other } = props;
   const apps = useContext(context);
+  const devices = useContext(devicesContext);
 
   return (
     <Drawer variant="permanent" {...other}>
@@ -71,14 +77,18 @@ function Navigator(props: NavigatorProps) {
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon className={classes.itemIcon}>
-            <LinkOffIcon className={classes.disconnected} />
+            {!devices.transport ?
+              <LinkOffIcon className={classes.disconnected} />
+            :
+            <LinkIcon className={classes.connected} />
+            }
           </ListItemIcon>
           <ListItemText
             classes={{
               primary: classes.itemPrimary,
             }}
           >
-            Device disconnected
+            Device {devices.transport ? `Connected (${devices.app.name})` : "Disconnected"}
           </ListItemText>
         </ListItem>
           <React.Fragment key={"apps"}>

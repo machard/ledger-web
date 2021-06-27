@@ -12,6 +12,7 @@ import Navigator from './Navigator';
 import App from './App';
 import Header from './Header';
 import AppsProvider from "./providers/apps";
+import DevicesProvider from "./providers/devices";
 
 let theme = createMuiTheme({
   palette: {
@@ -160,6 +161,10 @@ function Paperbase(props: PaperbaseProps) {
     },
     {
       Provider: AppsProvider,
+      args: {}
+    },
+    {
+      Provider: DevicesProvider,
       args: {}
     }
   ].reduce((Provider, provider) => ({ children }) => (
