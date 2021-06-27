@@ -88,7 +88,9 @@ function Navigator(props: NavigatorProps) {
               primary: classes.itemPrimary,
             }}
           >
-            Device {devices.transport ? `Connected (${devices.app.name})` : "Disconnected"}
+            App {devices.transport ? "Connected" : "Disconnected"}
+            {devices.transport ? <br /> : null}
+            {devices.transport && devices.app ? `(${devices.app?.name} v${devices.app?.version})` : null}
           </ListItemText>
         </ListItem>
           <React.Fragment key={"apps"}>
