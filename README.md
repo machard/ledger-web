@@ -5,7 +5,7 @@ Open platform to access and develop web apps interacting with a ledger device
 ## App examples
 
 - https://github.com/machard/ledger-web-catalog
-- bitcoin wallet (soon)
+- https://github.com/machard/ledger-web-wallet-btc
 
 ## Client libs
 

@@ -35,7 +35,7 @@ export let setApp: (url: string) => void = () => {};
 // reducer
 const reducer = (state: State, update: any) => {
   let installedApps, app;
-  console.log("apps reducer", update, new Error().stack);
+  console.log("apps reducer", update);
   switch(update.type) {
     case "addApp":
       installedApps = uniqBy(
