@@ -91,7 +91,7 @@ function Navigator(props: NavigatorProps) {
                 My Apps
               </ListItemText>
             </ListItem>
-            {apps.apps.map(({ name, url, icon, isDev, isDefault }) => (
+            {apps.apps.map(({ name, url, icon }) => (
               <ListItem
                 key={name}
                 button

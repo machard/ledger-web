@@ -7,8 +7,6 @@ interface App {
   name: string;
   icon: string;
   url: string;
-  isDev: boolean;
-  isDefault: boolean;
 }
 
 const defaultApps: App[] = [
@@ -16,24 +14,8 @@ const defaultApps: App[] = [
     name: "Catalog",
     icon: "list",
     url: "https://ledger-web-catalog.vercel.app/",
-    isDev: false,
-    isDefault: true,
   },
-  {
-    name: "[DEV] Catalog",
-    icon: "list",
-    url: "http://localhost:3001/",
-    isDev: true,
-    isDefault: true,
-  },
-  {
-    name: "[DEV] Wallet BTC",
-    icon: "account_balance_wallet",
-    url: "http://localhost:3002/",
-    isDev: true,
-    isDefault: true,
-  }
-].filter(app => !app.isDev || process.env.REACT_APP_SHOW_DEV_APPS);
+];
 
 interface State {
   installedApps: App[];
