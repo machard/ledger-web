@@ -137,7 +137,7 @@ const DevicesProvider = ({
         await monitor();
       } catch(e) {}
     };
-    const interval = setInterval(ensure, 5000);
+    const interval = setInterval(ensure, 3000);
     ensure();
 
     return () => clearInterval(interval)
@@ -149,7 +149,7 @@ const DevicesProvider = ({
         await ensureConnected();
       } catch(e) {}
     };
-    const interval = setInterval(ensure, 5000);
+    const interval = setInterval(ensure, 3000);
     ensure();
 
     return () => clearInterval(interval)
