@@ -1,7 +1,6 @@
 /* @flow */
 import React, { ReactNode, useCallback, useEffect, useReducer } from "react";
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
-import { uniqBy } from "lodash";
 
 interface State {
   transport: any;
@@ -53,7 +52,7 @@ const initialState: State = {
 
 export const context = React.createContext<State>(initialState);
 
-export let ensureConnected = (): Transport | any => {};
+export let ensureConnected = (): any => {};
 
 const DevicesProvider = ({
   children,
