@@ -1,5 +1,6 @@
 /* @flow */
-import React, { ReactNode, useReducer } from "react";
+import React, { ReactNode } from "react";
+import useReducerWithLocalStorage from "../hooks/useReducerWithLocalStorage";
 import { uniqBy } from "lodash";
 
 interface App {
@@ -35,7 +36,6 @@ const defaultApps: App[] = [
 ].filter(app => !app.isDev || process.env.REACT_APP_SHOW_DEV_APPS);
 
 interface State {
-  defaultApps: App[];
   installedApps: App[];
   app: string,
 };
@@ -44,15 +44,16 @@ interface Value {
   app: string,
 };
 
-// actions
+// actions/methods
 export let removeApp: (url: string) => void = () => {};
 export let addApp: (app: App) => void = () => {};
+export let list: () => App[] = () => [];
 export let setApp: (url: string) => void = () => {};
 
 // reducer
 const reducer = (state: State, update: any) => {
   let installedApps, app;
-  console.log(update);
+  console.log("apps reducer", update, new Error().stack);
   switch(update.type) {
     case "addApp":
       installedApps = uniqBy(
@@ -85,7 +86,6 @@ const reducer = (state: State, update: any) => {
   return state;
 };
 const initialState: State = {
-  defaultApps: defaultApps,
   installedApps: [],
   app: defaultApps[0].url,
 };
@@ -99,12 +99,12 @@ const valueFromState = (state: State) => {
 
 export const context = React.createContext<Value>(valueFromState(initialState));
 
-const ApiProvider = ({
+const AppsProvider = ({
   children,
 }: {
   children: ReactNode,
 }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducerWithLocalStorage("apps", reducer, initialState);
 
   removeApp = (url: string) => dispatch({
     type: "removeApp",
@@ -114,6 +114,7 @@ const ApiProvider = ({
     type: "addApp",
     app,
   });
+  list = () => state.installedApps;
   setApp = (url: string) => dispatch({
     type: "setApp",
     url,
@@ -122,4 +123,4 @@ const ApiProvider = ({
   return <context.Provider value={valueFromState(state)}>{children}</context.Provider>;
 };
 
-export default ApiProvider;
+export default AppsProvider;

@@ -1,7 +1,8 @@
-import React, { useRef, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { context, addApp } from "./providers/apps";
+import { context } from "./providers/apps";
+import api from "./api";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -19,21 +20,6 @@ function App(props: HeaderProps) {
   const [iframe, setIframe]: [any, Function] = useState();
   const [stream, setStream]: [WindowPostMessageStream | undefined, Function] = useState();
   const apps = useContext(context);
-
-  const onMessage = (raw: any) => {
-    let data;
-    try {
-      data = JSON.parse(raw);
-    } catch(e) {
-      return;
-    }
-    console.log("app message", data);
-    switch (data.type + "/" + data.method) {
-      case "apps/addApp":
-        addApp(data.args[0]);
-        break
-    }
-  }
 
   useEffect(() => {
     if (!iframe) {
@@ -53,6 +39,8 @@ function App(props: HeaderProps) {
       return;
     }
 
+    const onMessage = (data: any) => api(stream, data);
+
     // @ts-ignore
     stream.on("data", onMessage);
 
@@ -63,9 +51,11 @@ function App(props: HeaderProps) {
   return (
     <React.Fragment>
       <iframe
+        key={apps.app}
         ref={(iframe) => {
           setIframe(iframe);
         }}
+        title={apps.app}
         src={apps.app}
         className={classes.iframe}
       />

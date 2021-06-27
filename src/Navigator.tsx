@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
 import Icon from '@material-ui/core/Icon';
 import { Omit } from '@material-ui/types';
-import { context, setApp, removeApp } from "./providers/apps";
+import { context, setApp } from "./providers/apps";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,9 +27,6 @@ const styles = (theme: Theme) =>
       color: 'rgba(255, 255, 255, 0.7)',
       '&:hover': {
         backgroundColor: 'rgba(255, 255, 255, 0.08)',
-        "& $remove": {
-          display: 'inline-flex',
-        }
       },
     },
     itemCategory: {
@@ -58,10 +55,6 @@ const styles = (theme: Theme) =>
     disconnected: {
       color: "red"
     },
-    remove: {
-      color: "red",
-      display: "none"
-    }
   });
 
 export interface NavigatorProps extends Omit<DrawerProps, 'classes'>, WithStyles<typeof styles> {}
@@ -113,10 +106,6 @@ function Navigator(props: NavigatorProps) {
                 >
                   {name}
                 </ListItemText>
-                {!isDev && !isDefault ? <ListItemIcon onClick={(evt) => {
-                  removeApp(url);
-                  evt.stopPropagation();
-                }} className={clsx(classes.itemIcon, classes.remove)}><Icon>clear</Icon></ListItemIcon> : null}
               </ListItem>
             ))}
             <Divider className={classes.divider} />
