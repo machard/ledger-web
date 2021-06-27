@@ -64,7 +64,11 @@ function Header(props: HeaderProps) {
             <Grid item xs />
             <Grid item>
               <Tooltip title="Help">
-                <IconButton color="inherit">
+                <IconButton
+                  color="inherit"
+                  target="_blank"
+                  href="https://github.com/machard/ledger-web"
+                >
                   <HelpIcon />
                 </IconButton>
               </Tooltip>
