@@ -10,7 +10,7 @@ Open platform to access and develop web apps interacting with a ledger device
 ## Client libs
 
 - https://github.com/machard/ledger-web-client
-- hw-transport-ledger-web (soon)
+- https://github.com/machard/ledger-web-hw-transport
 
 ## Extend the API
 
