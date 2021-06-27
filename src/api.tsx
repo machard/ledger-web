@@ -62,6 +62,7 @@ const api = async (stream: WindowPostMessageStream, data: any) => {
 
       let result;
       try {
+        // @ts-ignore
         result = await transport.send(...data.args);
       } catch(e) {
         return stream.write({
