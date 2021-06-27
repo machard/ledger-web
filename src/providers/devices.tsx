@@ -10,6 +10,7 @@ interface State {
 };
 
 // actions/methods
+export let getTransport = () => TransportWebUSB;
 
 // reducer
 const reducer = (state: State, update: any) => {
@@ -60,6 +61,8 @@ const DevicesProvider = ({
   children: ReactNode,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  getTransport = () => state.transport;
 
   ensureConnected = useCallback(async () => {
     if (state.transport) {
