@@ -1,6 +1,6 @@
 # Ledger Web
 
-Open platform to develop web apps interacting with a ledger device
+Open platform to access and develop web apps interacting with a ledger device
 
 ## App examples
 
