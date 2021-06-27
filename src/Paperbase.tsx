@@ -13,6 +13,7 @@ import App from './App';
 import Header from './Header';
 import AppsProvider from "./providers/apps";
 import DevicesProvider from "./providers/devices";
+import AccountsProvider from "./providers/accounts";
 import Placeholder from "./modals/Placeholder";
 import ModalsProvider from "./providers/modals";
 
@@ -167,6 +168,10 @@ function Paperbase(props: PaperbaseProps) {
     },
     {
       Provider: DevicesProvider,
+      args: {}
+    },
+    {
+      Provider: AccountsProvider,
       args: {}
     },
     {
