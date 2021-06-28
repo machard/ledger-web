@@ -16,8 +16,6 @@ Open Web OS for the whole web3/defi on any chain leveraging the ledger devices
 
 ## TODO
 
-- Currently the API / cross app data layer is centralized on the host/top window https://github.com/machard/ledger-web/blob/master/src/api.tsx . Not great.
-The next step is to have every app defining a web worker that the host is going to keep alive.
-The web worker expose the api/data of the app and is accessible all the time from other apps.
+- Allow apps to define a worker that the host/top window keeps alive. That way installed apps can run processes in background and also make their data available to other apps. The host/top window api must be limited to the strict minium (apps, devices, notifications...).
 
-- Plug the navigation
+- Plug react router navigation

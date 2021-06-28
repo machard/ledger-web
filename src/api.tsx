@@ -3,7 +3,6 @@ import { addApp, removeApp, list } from "./providers/apps";
 import { getTransport } from "./providers/devices";
 import { setModal } from "./providers/modals";
 import RequireApp from "./modals/RequireApp";
-import { addAccount, removeAccount, list as listAccounts } from './providers/accounts';
 
 const api = async (stream: WindowPostMessageStream, data: any) => {
   console.log("api request", data);
@@ -25,25 +24,6 @@ const api = async (stream: WindowPostMessageStream, data: any) => {
       stream.write({
         id: data.id,
         res: list()
-      })
-      break
-
-    case "accounts/addAccount":
-      addAccount(data.args[0]);
-      stream.write({
-        id: data.id,
-      })
-      break
-    case "accounts/removeAccount":
-      removeAccount(data.args[0]);
-      stream.write({
-        id: data.id,
-      })
-      break
-    case "accounts/list":
-      stream.write({
-        id: data.id,
-        res: listAccounts(data.args[0])
       })
       break
 
