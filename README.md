@@ -16,6 +16,6 @@ Open Web OS for the whole web3/defi on any chain leveraging the ledger devices
 
 ## TODO
 
-- Allow apps to define a worker that the host/top window keeps alive. That way installed apps can run processes in background and also make their data available to other apps. The host/top window api must be limited to the strict minium (apps, devices, notifications...).
+- Find a way somehow to have multiple apps alive at the same time so that they can communicate together. A possibility is just for apps to define apps dependencies and run the apps dependencies in an hidden iframe at the same time.
 
 - Plug react router navigation
