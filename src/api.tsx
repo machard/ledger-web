@@ -58,6 +58,8 @@ const api = async (stream: WindowPostMessageStream, data: any) => {
 
       if (data.args[4]) {
         data.args[4] = Buffer.from(data.args[4], "hex");
+      } else {
+        data.args[4] = Buffer.alloc(0);
       }
 
       let result;
@@ -67,7 +69,7 @@ const api = async (stream: WindowPostMessageStream, data: any) => {
       } catch(e) {
         return stream.write({
           id: data.id,
-          err: e.message
+          err: e
         })
       }
 

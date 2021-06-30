@@ -58,6 +58,7 @@ function App(props: HeaderProps) {
         title={apps.app}
         src={apps.app}
         className={classes.iframe}
+        allow="clipboard-write"
       />
     </React.Fragment>
   );
