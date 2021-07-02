@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { DialogActions, DialogContent, DialogTitle } from "../components/Dialog";
 import { Button, Dialog } from '@material-ui/core';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { context as devicesContext } from "../providers/devices";
+import { context as devicesContext, setTransport } from "../providers/devices";
+import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
 
 const styles = (theme: Theme) =>
   createStyles({});
@@ -14,15 +15,106 @@ interface Props extends WithStyles<typeof styles> {
   handleSuccess: Function;
 }
 
+const ensureAppOpen = async (transport: TransportWebUSB, expectedName: string, handleSuccess: Function) => {
+  console.log("ensure app open");
+  try {
+    const r = await transport.send(0xb0, 0x01, 0x00, 0x00);
+    let i = 0;
+    const format = r[i++];
+    if (format !== 1) {
+      throw new Error("wrong app");
+    }
+    const nameLength = r[i++];
+    const name = r.slice(i, (i += nameLength)).toString("ascii");
+    const versionLength = r[i++];
+    const version = r.slice(i, (i += versionLength)).toString("ascii");
+    const flagLength = r[i++];
+    const flags = r.slice(i, (i += flagLength));
+    
+    if (name !== expectedName) {
+      throw new Error("wrong app");
+    }
+
+    handleSuccess();
+  } catch(e) {
+    throw new Error("wrong app");
+  }
+}
+
+const ensureConnected = async (setTransport: Function) => {
+  let transport = await TransportWebUSB.openConnected();
+  if (transport) {
+    return setTransport(transport);
+  }
+
+  try {
+    transport = await TransportWebUSB.request();
+  } catch(e) {}
+
+  if (transport) {
+    return setTransport(transport);
+  }
+
+  throw new Error("no transport");
+};
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 function RequireApp(props: Props) {
     const { classes, app, handleCancel, handleSuccess } = props;
     const devices = useContext(devicesContext);
 
+
     useEffect(() => {
-      if (devices.app?.name === app.name) {
-        handleSuccess()
+      if (!devices.transport) {
+        return;
       }
-    })
+
+      let stop = false;
+
+      const ensure = async () => {
+        if (stop) {
+          return;
+        }
+        try {
+          await ensureAppOpen(devices.transport, app.name, handleSuccess);
+        } catch(e) {
+          await delay(200);
+          ensure();
+        }
+      };
+      
+      ensure();
+
+      return () => {
+        stop = true;
+      }
+    }, [devices.transport, handleSuccess])
+
+    useEffect(() => {
+      if (devices.transport) {
+        return;
+      }
+
+      let stop = false;
+
+      const ensure = async () => {
+        if (stop) {
+          return;
+        }
+        try {
+          await ensureConnected(setTransport);
+        } catch(e) {
+          ensure();
+        }
+      };
+      
+      ensure();
+
+      return () => {
+        stop = true;
+      }
+    }, [devices.transport]);
   
     return (
       <Dialog onClose={handleCancel} aria-labelledby="customized-dialog-title" open={true}>

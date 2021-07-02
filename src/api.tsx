@@ -3,6 +3,7 @@ import { addApp, removeApp, list } from "./providers/apps";
 import { getTransport } from "./providers/devices";
 import { setModal } from "./providers/modals";
 import RequireApp from "./modals/RequireApp";
+import RequireDeviceAction from './modals/RequireDeviceAction';
 
 const api = async (stream: WindowPostMessageStream, data: any) => {
   console.log("api request", data);
@@ -45,6 +46,21 @@ const api = async (stream: WindowPostMessageStream, data: any) => {
         },
         app: data.args[0]
       });
+      break
+
+    case "devices/requireDeviceActionStart":
+      setModal(RequireDeviceAction, {});
+      stream.write({
+        id: data.id,
+        res: "success"
+      })
+      break
+    case "devices/requireDeviceActionEnd":
+      setModal();
+      stream.write({
+        id: data.id,
+        res: "success"
+      })
       break
 
     case "devices/send":
