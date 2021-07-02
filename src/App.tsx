@@ -27,7 +27,7 @@ function App(props: HeaderProps) {
     }
     setStream(new WindowPostMessageStream({
       name: 'ledger-web-parent',
-      target: 'ledger-web-app',
+      target: apps.app,
       // todo when updating: https://github.com/MetaMask/post-message-stream/pull/23
       // targetOrigin: "*",
       targetWindow: iframe.contentWindow,
