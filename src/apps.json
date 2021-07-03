@@ -15,6 +15,14 @@
     },
     {
       "categories": ["Wallet"],
+      "name": "Wallet Connect",
+      "description": "WalletConnect is an open source protocol for connecting decentralised applications to mobile wallets with QR code scanning or deep linking.",
+      "image": "https://walletconnect.org/walletconnect-logo.svg",
+      "icon": "settings_ethernet_icon",
+      "url": "https://ledger-web-wallet-connect.vercel.app/"
+    },
+    {
+      "categories": ["Wallet"],
       "name": "Wallet Ethereum",
       "description": "Ethereum is a decentralized, open-source blockchain with smart contract functionality. Ether (ETH or Ξ) is the native cryptocurrency of the platform",
       "image": "https://pbs.twimg.com/profile_images/1084788308595617793/DOnqq1OM.jpg",

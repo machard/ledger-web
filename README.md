@@ -6,6 +6,7 @@ Open community platform for web3/defi apps on any chain leveraging the ledger de
 
 - https://github.com/machard/ledger-web-catalog
 - https://github.com/machard/ledger-web-wallet-btc
+- https://github.com/machard/ledger-web-wallet-connect
 
 ## Client libs
 
