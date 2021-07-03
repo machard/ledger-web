@@ -1,6 +1,6 @@
 # Ledger Web
 
-Open Web OS for the whole web3/defi on any chain leveraging the ledger devices
+Open community platform for web3/defi apps on any chain leveraging the ledger devices on the web
 
 ## App examples
 
