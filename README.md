@@ -9,8 +9,8 @@ Open community platform for web3/defi apps on any chain leveraging the ledger de
 
 ## Client libs
 
-- https://github.com/machard/ledger-web-client
-- https://github.com/machard/ledger-web-hw-transport
+- https://www.npmjs.com/package/ledger-web-client
+- https://www.npmjs.com/package/ledger-web-hw-transport
 
 ## Submit your app
 
