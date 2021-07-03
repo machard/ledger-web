@@ -98,10 +98,37 @@ function Navigator(props: NavigatorProps) {
                   primary: classes.categoryHeaderPrimary,
                 }}
               >
+                Default Apps
+              </ListItemText>
+            </ListItem>
+            {apps.defaultApps.map(({ name, url, icon }) => (
+              <ListItem
+                key={name}
+                button
+                className={clsx(classes.item, url === apps.app && classes.itemActiveItem)}
+                onClick={() => setApp(url)}
+              >
+                <ListItemIcon className={classes.itemIcon}><Icon>{icon}</Icon></ListItemIcon>
+                <ListItemText
+                  classes={{
+                    primary: classes.itemPrimary,
+                  }}
+                >
+                  {name}
+                </ListItemText>
+              </ListItem>
+            ))}
+            <Divider className={classes.divider} />
+            <ListItem className={classes.categoryHeader}>
+              <ListItemText
+                classes={{
+                  primary: classes.categoryHeaderPrimary,
+                }}
+              >
                 My Apps
               </ListItemText>
             </ListItem>
-            {apps.apps.map(({ name, url, icon }) => (
+            {apps.installedApps.map(({ name, url, icon }) => (
               <ListItem
                 key={name}
                 button

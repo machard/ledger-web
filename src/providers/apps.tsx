@@ -2,6 +2,7 @@
 import React, { ReactNode } from "react";
 import useReducerWithLocalStorage from "../hooks/useReducerWithLocalStorage";
 import { uniqBy } from "lodash";
+import appsData from "../apps.json";
 
 interface App {
   name: string;
@@ -9,20 +10,9 @@ interface App {
   url: string;
 }
 
-const defaultApps: App[] = [
-  {
-    name: "Catalog",
-    icon: "list",
-    url: "https://ledger-web-catalog.vercel.app/",
-  },
-];
-
 interface State {
   installedApps: App[];
-  app: string,
-};
-interface Value {
-  apps: App[];
+  defaultApps: App[];
   app: string,
 };
 
@@ -40,7 +30,7 @@ const reducer = (state: State, update: any) => {
     case "addApp":
       installedApps = uniqBy(
         state.installedApps.concat([update.app]),
-        "name"
+        "url"
       );
       state = {
         ...state,
@@ -56,7 +46,7 @@ const reducer = (state: State, update: any) => {
     case "removeApp":
       installedApps = state.installedApps.filter(app => app.url !== update.url);
       if (state.app === update.url) {
-        app = defaultApps[0].url
+        app = appsData.defaultApps[0].url
       }
       state = {
         ...state,
@@ -69,24 +59,18 @@ const reducer = (state: State, update: any) => {
 };
 const initialState: State = {
   installedApps: [],
-  app: defaultApps[0].url,
+  defaultApps: appsData.defaultApps,
+  app: appsData.defaultApps[0].url,
 };
 
-const valueFromState = (state: State) => {
-  return {
-    app: state.app,
-    apps: state.installedApps.concat(defaultApps),
-  };
-}
-
-export const context = React.createContext<Value>(valueFromState(initialState));
+export const context = React.createContext<State>(initialState);
 
 const AppsProvider = ({
   children,
 }: {
   children: ReactNode,
 }) => {
-  const [state, dispatch] = useReducerWithLocalStorage("apps", reducer, initialState);
+  const [state, dispatch] = useReducerWithLocalStorage("apps2", reducer, initialState);
 
   removeApp = (url: string) => dispatch({
     type: "removeApp",
@@ -102,7 +86,7 @@ const AppsProvider = ({
     url,
   });
 
-  return <context.Provider value={valueFromState(state)}>{children}</context.Provider>;
+  return <context.Provider value={state}>{children}</context.Provider>;
 };
 
 export default AppsProvider;

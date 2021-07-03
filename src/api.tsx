@@ -4,11 +4,18 @@ import { getTransport } from "./providers/devices";
 import { setModal } from "./providers/modals";
 import RequireApp from "./modals/RequireApp";
 import RequireDeviceAction from './modals/RequireDeviceAction';
+import appsData from "./apps.json";
 
 const api = async (stream: WindowPostMessageStream, data: any) => {
   console.log("api request", data);
 
   switch (data.type + "/" + data.method) {
+    case "apps/data":
+      stream.write({
+        id: data.id,
+        res: appsData
+      });
+      break
     case "apps/addApp":
       addApp(data.args[0]);
       stream.write({
