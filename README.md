@@ -6,16 +6,18 @@ Open Web OS for the whole web3/defi on any chain leveraging the ledger devices
 
 - https://github.com/machard/ledger-web-catalog
 - https://github.com/machard/ledger-web-wallet-btc
-- any dapp using https://github.com/blockmason/web3-provider-ledger (soon!)
 
 ## Client libs
 
 - https://github.com/machard/ledger-web-client
 - https://github.com/machard/ledger-web-hw-transport
-- ledger-web-u2f to use when instantiating https://github.com/blockmason/web3-provider-ledger (soon!)
+
+## Submit your app
+
+make a PR to https://github.com/machard/ledger-web/blob/master/src/apps.json
 
 ## TODO
 
-- Find a way somehow to have multiple apps alive at the same time so that they can communicate together. A possibility is just for apps to define apps dependencies and run the apps dependencies in an hidden iframe at the same time.
+- Communication interapp. A possibility is just for apps to define apps dependencies and run the apps dependencies in an hidden iframe at the same time and communicate through the stream.
 
 - Plug react router navigation
