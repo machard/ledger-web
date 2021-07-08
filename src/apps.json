@@ -2,6 +2,7 @@
   "categories": [
     "Wallet",
     "Trading",
+    "Staking",
     "Borrowing/Lending"
   ],
   "apps": [
@@ -36,6 +37,22 @@
       "image": "https://pbs.twimg.com/profile_images/1328431690268729347/flijoJYv_400x400.jpg",
       "icon": "account_balance_wallet",
       "url": "https://www.downloadwebsitetemplates.co.uk/templates/progress/?comsos"
+    },
+    {
+      "categories": ["Staking"],
+      "name": "Lido ETH2 Staking",
+      "description": "Lido is a liquid staking solution for ETH 2.0 backed by industry-leading staking providers. Lido lets users stake their ETH - without locking assets or maintaining infrastructure - whilst participating in on-chain activities, e.g. lending.",
+      "image": "https://pbs.twimg.com/profile_images/1314525613881995264/pGDedFg0_400x400.png",
+      "icon": "dns",
+      "url": "https://ledger-web-lido.vercel.app/"
+    },
+    {
+      "categories": ["Trading"],
+      "name": "Sushiswap",
+      "description": "Be a DeFi Chef with Sushi. Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform",
+      "image": "https://s2.coinmarketcap.com/static/img/coins/200x200/6758.png",
+      "icon": "swap_horiz",
+      "url": "https://ledger-web-sushiswap.vercel.app/"
     },
     {
       "categories": ["Trading"],
