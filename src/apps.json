@@ -16,6 +16,14 @@
     },
     {
       "categories": ["Wallet"],
+      "name": "Terra Station",
+      "description": "Terra is a programmable money for the internet that is easier to spend, and more attractive to hold",
+      "image": "https://play-lh.googleusercontent.com/sUJQKb2HeZZ4y2dFuHhVoCheiX2fR2It35fgU4_6ow0i51EgsgvZLfjXUrLQo_Of6Fs",
+      "icon": "account_balance_wallet",
+      "url": "https://ledger-web-terra-station.vercel.app/"
+    },
+    {
+      "categories": ["Wallet"],
       "name": "Wallet Connect",
       "description": "WalletConnect is an open source protocol for connecting decentralised applications to mobile wallets with QR code scanning or deep linking.",
       "image": "https://walletconnect.org/walletconnect-logo.svg",
