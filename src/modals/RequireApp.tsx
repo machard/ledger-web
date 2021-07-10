@@ -115,6 +115,10 @@ function RequireApp(props: Props) {
         stop = true;
       }
     }, [devices.transport]);
+
+    const handleWakeup = () => {
+      setTransport(null);
+    }
   
     return (
       <Dialog onClose={handleCancel} aria-labelledby="customized-dialog-title" open={true}>
@@ -130,7 +134,10 @@ function RequireApp(props: Props) {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleCancel} color="secondary">
+          <Button disabled={!devices.transport} onClick={handleWakeup} color="primary">
+            It's done, wake up !
+          </Button>
+          <Button onClick={handleCancel} color="secondary">
             I don't want
           </Button>
         </DialogActions>
