@@ -13,7 +13,7 @@
     "@types/node": "^15.12.4",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
-    "ledger-web-engine-react": "1.0.1",
+    "ledger-web-engine-react": "1.0.4",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
