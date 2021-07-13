@@ -21,12 +21,6 @@ const reducer = (state: State, update: any) => {
         transport: update.transport,
       };
       break;
-    case "disconnected":
-      return {
-        ...state,
-        transport: null,
-      };
-      break;
   }
   return state;
 };
@@ -43,25 +37,14 @@ const DevicesProvider = ({
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  getTransport = () => state.transport;
-  setTransport = (transport: any) => {
+  getTransport = useCallback(() => state.transport, []);
+  setTransport = useCallback((transport: any) => {
     dispatch({
       type: "transport",
       transport
     });
     return undefined;
-  }
-
-  useEffect(() => {
-    if (!state.transport) {
-      return;
-    }
-    state.transport._events.once("disconnect", () => {
-      dispatch({
-        type: "disconnected"
-      });
-    })
-  }, [state.transport, dispatch])
+  }, []);
 
   return <context.Provider value={state}>{children}</context.Provider>;
 };

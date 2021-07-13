@@ -7088,6 +7088,16 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
+ledger-web-engine-react@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ledger-web-engine-react/-/ledger-web-engine-react-1.0.1.tgz#b050e75b21fc3886cb8743a07f4d26dc08dc4fc7"
+  integrity sha512-gj5cYl+JVKPnEEcltuHLEC2Nj/9vlM1aTgbg0js7fQToG5RTYUUMGciGi8u8ATdMvhq/Uy8WDnjvJSmajcmjpg==
+  dependencies:
+    "@ledgerhq/hw-transport-webusb" "^6.0.2"
+    "@material-ui/core" "^4.11.4"
+    "@material-ui/icons" "^4.11.2"
+    "@metamask/post-message-stream" "^4.0.0"
+
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
