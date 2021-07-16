@@ -11,6 +11,10 @@ Open community platform for web3/defi apps on any chain leveraging the ledger de
 - https://github.com/machard/ledger-web-sushiswap
 - https://github.com/machard/ledger-web-terra-station
 
+## Engine
+
+- https://www.npmjs.com/package/ledger-web-engine-react
+
 ## Client libs
 
 - https://www.npmjs.com/package/ledger-web-client
